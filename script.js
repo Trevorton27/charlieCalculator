@@ -35,20 +35,20 @@ function performCalculation() {
   const secondInt = parseInt(num2, 10);
   // check value of operator
   switch (operator) {
-    
+
     case add:
-      let operator = plusButton.value;
+      const operatorValue = operator.value;
       break;
 
     case subtract:
-      let operator = minusButton.value;
+      const operatorValue = operator.value;
       break;
 
     case multiply:
-      let operator = multiplyButton.value;
+      const operatorValue = operator.value;
       break;
     default:
-      let operator = divideButton.value;
+      const operatorValue = operator.value;
   }
   // execute correct calculation based on value of operator and
   //num1 and num2
