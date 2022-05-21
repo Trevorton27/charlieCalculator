@@ -1,57 +1,61 @@
-let num1;
-let num2;
-let operator;
-
 const numbers = document.querySelectorAll('.number-button');
-numbers.forEach((number) => {
-       
-      number.addEventListener("click", (e) => {
-        const click1 = document.getElementById('buttonOne').value;
-        handleDisplay(click1);       
-      }); 
-           
-      //number.addEventListener("click", (e) => {
-        //const click2 = document.getElementById('buttonTwo').value;
-        //handleDisplay(click2);
-      //});
-});
-
-
-function handleDisplay(digit){
-  const displayNumber = document.getElementById('display');
-  displayNumber.value = digit;
-
-  performCalculation(digit);
-}
-
-function performCalculation(num1) {
-
-}
-
-
-
-
-
-
-
-
-
-
-/*
 const operators = document.querySelectorAll('.operator-button');
-operators.forEach((operator) (e) => {
+const displayNumber = document.getElementById('display');
+let num1 = '';
+let num2 = '';
+let operator = '';
 
+numbers.forEach((number) => {
+  number.addEventListener('click', (e) => {
+    e.preventDefault();
+    if (!operator) {
+      num1 += e.target.value;
+      //console.log('num1: ', num1);
+      displayNumber.value = num1;
+    }
+    if (num1 && operator) {
+      num2 += e.target.value;
+      //console.log('num2: ', num2);
+      displayNumber.value = num2;
+    }
+  });
 });
 
-buttonTwo.addEventlistener("click", (e) => displayNumbers());
-plusButton.addEventlistener();
-equals.addEventlistener();
-minusButton.addEventlistener();
+operators.forEach((operatorValue) => {
+  operatorValue.addEventListener('click', (e) => {
+    e.preventDefault();
+    if (num1) operator += e.target.value;
+    //console.log('operator: ', operator);
+  });
+  performCalculation();
+});
 
+function performCalculation() { 
+  const firstInt = parseInt(num1, 10);
+  const secondInt = parseInt(num2, 10);
+  // check value of operator
+  switch (operator) {
+    
+    case add:
+      let operator = plusButton.value;
+      break;
 
-        if (operator) {
-          number.clicked === num1;
-        } else {
-          number.clicked === num2;
-        }
-*/
+    case subtract:
+      let operator = minusButton.value;
+      break;
+
+    case multiply:
+      let operator = multiplyButton.value;
+      break;
+    default:
+      let operator = divideButton.value;
+  }
+  // execute correct calculation based on value of operator and
+  //num1 and num2
+  const result = (firstInt + operator + secondInt);
+  //update display with result
+  displayNumber.value = result;
+}
+
+//Pseudo for performCalc(); checklist
+//convert num1 and num2 to numbers
