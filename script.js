@@ -4,6 +4,7 @@ const displayNumber = document.getElementById('display');
 let num1 = '';
 let num2 = '';
 let operator = '';
+let result;
 
 numbers.forEach((number) => {
   number.addEventListener('click', (e) => {
@@ -25,7 +26,7 @@ operators.forEach((operatorValue) => {
   operatorValue.addEventListener('click', (e) => {
     e.preventDefault();
     if (num1) operator += e.target.value;
-    //console.log('operator: ', operator);
+    console.log('operator: ', operator);
   });
   performCalculation();
 });
@@ -33,28 +34,40 @@ operators.forEach((operatorValue) => {
 function performCalculation() { 
   const firstInt = parseInt(num1, 10);
   const secondInt = parseInt(num2, 10);
+  //console.log(typeof firstInt);
+  //console.log(typeof secondInt);
   // check value of operator
+
+  if(operator){
+
+  }
+  
   switch (operator) {
 
-    case add:
-      const operatorValue = operator.value;
+    case '+':
+      firstInt + secondInt;
       break;
 
-    case subtract:
-      const operatorValue = operator.value;
+    case '-':
+      firstInt - secondInt;
       break;
 
-    case multiply:
-      const operatorValue = operator.value;
+    case '*':
+      firstInt * secondInt;
+      break;
+    case '/':
+      firstInt / secondInt;
       break;
     default:
-      const operatorValue = operator.value;
+        console.log('not an operator');
+      break;
   }
+  
   // execute correct calculation based on value of operator and
   //num1 and num2
-  const result = (firstInt + operator + secondInt);
+  
   //update display with result
-  displayNumber.value = result;
+  
 }
 
 //Pseudo for performCalc(); checklist
