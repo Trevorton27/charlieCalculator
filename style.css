@@ -1,0 +1,14 @@
+#display {
+  display: flex;
+  flex-direction: row-reverse;
+  color: black;
+  font-size: 29px;
+  padding: 0.5px 2px;
+}
+
+.result-container {
+  border: 1px solid black;
+  height: 36px;
+  width: 200px;
+  margin: 8px;
+}

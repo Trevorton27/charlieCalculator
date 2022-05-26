@@ -6,7 +6,7 @@ let num2 = '';
 let operator = '';
 document.getElementById('equalsButton').addEventListener('click', (e) =>{
     e.preventDefault();
-    performCalculation();
+    performCalculation(operator);
 });
 
 numbers.forEach((number) => {
@@ -14,16 +14,16 @@ numbers.forEach((number) => {
     e.preventDefault();
     if (!operator) {
       num1 += e.target.value;
-      displayNumber.value = num1;
+      displayNumber.textContent = num1;
     }
     if (num1 && operator){
       num2 += e.target.value;
-      displayNumber.value = num2;
+      displayNumber.textContent = num2;
     }
     else if (num1 && num2 && operator) { 
       num2 += e.target.value;
       //num2 = performCalculation();
-      displayNumber.value = num2;     
+      displayNumber.textContent = num2;     
       //console.log('operator:', operator);
     }
   });
@@ -32,13 +32,24 @@ numbers.forEach((number) => {
 operators.forEach((operatorValue) => {
   operatorValue.addEventListener('click', (e) => {
     e.preventDefault();
+    if (num1 && num2){
+      let newOperator = e.target.value;
+      runContinuousOperation(newOperator);
+    }
     if (num1){
      operator = e.target.value;
     } 
     console.log('operator: ', operator);
   });
-  performCalculation();
+
 });
+
+function runContinuousOperation(newOperator){
+  num1 = performCalculation(operator);
+  displayNumber.textContent = num1;
+  num2 = '';
+  operator = newOperator;
+}
 
 function performCalculation() { 
   const firstInt = parseInt(num1);
@@ -49,25 +60,26 @@ function performCalculation() {
   } 
   switch (operator) {
     case '+':
-      displayNumber.value = firstInt + secondInt;
+      displayNumber.textContent = firstInt + secondInt;
       break;
     case '-':
-      displayNumber.value = firstInt - secondInt;
+      displayNumber.textContent = firstInt - secondInt;
       break;
     case '*':
-      displayNumber.value = firstInt * secondInt;
+      displayNumber.textContent = firstInt * secondInt;
       break;
     case '/':
-      displayNumber.value = firstInt / secondInt;
+      displayNumber.textContent = firstInt / secondInt;
       break;
     default:
         console.log('not an operator');
       break;
   }
+  return displayNumber.textContent;
 }
 
 //Pseudo for performCalc(); checklist
 //convert num1 and num2 to numbers
-// check value of operator
-// execute correct calculation based on value of operator and
+// check textContentof operator
+// execute correct calculation based on textContentof operator and
   //num1 and num2
