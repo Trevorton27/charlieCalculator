@@ -1,12 +1,16 @@
 const numbers = document.querySelectorAll('.number-button');
 const operators = document.querySelectorAll('.operator-button');
 const displayNumber = document.getElementById('display');
+console.log("display" ,displayNumber.textContent);
 let num1 = '';
 let num2 = '';
 let operator = '';
 document.getElementById('equalsButton').addEventListener('click', (e) =>{
     e.preventDefault();
     performCalculation(operator);
+    num1 = '';
+    num2 = '';
+    operator = '';
 });
 
 numbers.forEach((number) => {
@@ -32,7 +36,6 @@ operators.forEach((operatorValue) => {
     e.preventDefault();
     if (num1){
       operator = e.target.value;
-      displayNumber.textContent = operator;
      } 
     if (num1 && num2){
       let nextOperator = e.target.value;
@@ -73,12 +76,6 @@ function performCalculation() {
   return displayNumber.textContent;
 }
 
-/*
-document.getElementById('clearButton').addEventListener('click', () => {
-  //e.preventDefault();
-  document.getElementById('form').reset();
-});
-*/
 document.getElementById('clearButton').addEventListener('click', (e) => {
   e.preventDefault();
   displayNumber.textContent = 0;
