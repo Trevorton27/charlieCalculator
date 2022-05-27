@@ -22,9 +22,7 @@ numbers.forEach((number) => {
     }
     else if (num1 && num2 && operator) { 
       num2 += e.target.value;
-      //num2 = performCalculation();
       displayNumber.textContent = num2;     
-      //console.log('operator:', operator);
     }
   });
 });
@@ -32,23 +30,23 @@ numbers.forEach((number) => {
 operators.forEach((operatorValue) => {
   operatorValue.addEventListener('click', (e) => {
     e.preventDefault();
-    if (num1 && num2){
-      let newOperator = e.target.value;
-      runContinuousOperation(newOperator);
-    }
     if (num1){
-     operator = e.target.value;
-    } 
-    console.log('operator: ', operator);
+      operator = e.target.value;
+      displayNumber.textContent = operator;
+     } 
+    if (num1 && num2){
+      let nextOperator = e.target.value;
+      runContinuousOperation(nextOperator);
+    }   
   });
 
 });
 
-function runContinuousOperation(newOperator){
+function runContinuousOperation(nextOperator){
   num1 = performCalculation(operator);
   displayNumber.textContent = num1;
   num2 = '';
-  operator = newOperator;
+  operator = nextOperator;
 }
 
 function performCalculation() { 
@@ -71,15 +69,24 @@ function performCalculation() {
     case '/':
       displayNumber.textContent = firstInt / secondInt;
       break;
-    default:
-        console.log('not an operator');
-      break;
   }
   return displayNumber.textContent;
 }
+
+/*
+document.getElementById('clearButton').addEventListener('click', () => {
+  //e.preventDefault();
+  document.getElementById('form').reset();
+});
+*/
+document.getElementById('clearButton').addEventListener('click', (e) => {
+  e.preventDefault();
+  displayNumber.textContent = 0;
+});
 
 //Pseudo for performCalc(); checklist
 //convert num1 and num2 to numbers
 // check textContentof operator
 // execute correct calculation based on textContentof operator and
   //num1 and num2
+  //displayNumber.textContent
