@@ -55,6 +55,12 @@ function runContinuousOperation(nextOperator){
 function performCalculation() { 
   const firstInt = parseInt(num1);
   const secondInt = parseInt(num2);
+  const remainder = num1 % num2;
+    if(remainder > 0){
+        (num1 / num2).toFixed(3);
+    }else{
+        num1/num2;
+    };
 
   if(operator){
 
@@ -80,10 +86,3 @@ document.getElementById('clearButton').addEventListener('click', (e) => {
   e.preventDefault();
   displayNumber.textContent = 0;
 });
-
-//Pseudo for performCalc(); checklist
-//convert num1 and num2 to numbers
-// check textContentof operator
-// execute correct calculation based on textContentof operator and
-  //num1 and num2
-  //displayNumber.textContent
