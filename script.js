@@ -33,14 +33,16 @@ numbers.forEach((number) => {
 
 operators.forEach((operatorValue) => {
   operatorValue.addEventListener('click', (e) => {
-    e.preventDefault();
-    if (num1){
-      operator = e.target.value;
-     } 
+    e.preventDefault();  
     if (num1 && num2){
       let nextOperator = e.target.value;
+      console.log('nextOperator', nextOperator);
       runContinuousOperation(nextOperator);
-    }   
+    }  
+    if (num1){
+      operator = e.target.value;
+      console.log('operator', operator);
+     } 
   });
 
 });
@@ -55,7 +57,6 @@ function runContinuousOperation(nextOperator){
 function performCalculation() { 
   const firstInt = parseInt(num1);
   const secondInt = parseInt(num2);
-  const remainder = firstInt % secondInt;
   
   if(operator){
 
@@ -71,11 +72,10 @@ function performCalculation() {
       displayNumber.textContent = firstInt * secondInt;
       break;
     case '/':
-      if(remainder > 0){
-        displayNumber.textContent = (firstInt / secondInt).toFixed(3);
-    }else{
-      displayNumber.textContent = firstInt / secondInt;
-    };
+      displayNumber.textContent =
+        firstInt % secondInt === 0
+        ? firstInt / secondInt
+        : (firstInt / secondInt).toFixed(3);
       break;
   }
   return displayNumber.textContent;
