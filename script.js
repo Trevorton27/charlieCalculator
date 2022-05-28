@@ -1,7 +1,6 @@
 const numbers = document.querySelectorAll('.number-button');
 const operators = document.querySelectorAll('.operator-button');
 const displayNumber = document.getElementById('display');
-console.log("display" ,displayNumber.textContent);
 let num1 = '';
 let num2 = '';
 let operator = '';
@@ -36,12 +35,10 @@ operators.forEach((operatorValue) => {
     e.preventDefault();  
     if (num1 && num2){
       let nextOperator = e.target.value;
-      console.log('nextOperator', nextOperator);
       runContinuousOperation(nextOperator);
     }  
     if (num1){
       operator = e.target.value;
-      console.log('operator', operator);
      } 
   });
 
