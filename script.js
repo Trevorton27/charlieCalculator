@@ -55,13 +55,8 @@ function runContinuousOperation(nextOperator){
 function performCalculation() { 
   const firstInt = parseInt(num1);
   const secondInt = parseInt(num2);
-  const remainder = num1 % num2;
-    if(remainder > 0){
-        (num1 / num2).toFixed(3);
-    }else{
-        num1/num2;
-    };
-
+  const remainder = firstInt % secondInt;
+  
   if(operator){
 
   } 
@@ -76,7 +71,11 @@ function performCalculation() {
       displayNumber.textContent = firstInt * secondInt;
       break;
     case '/':
+      if(remainder > 0){
+        displayNumber.textContent = (firstInt / secondInt).toFixed(3);
+    }else{
       displayNumber.textContent = firstInt / secondInt;
+    };
       break;
   }
   return displayNumber.textContent;
